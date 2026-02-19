@@ -27,11 +27,6 @@
             <input type="password" class="form-control form-control-lg" id="password" name="password" required>
         </div>
 
-        <div class="mb-4 form-check">
-            <input type="checkbox" class="form-check-input" id="remember">
-            <label class="form-check-label small text-muted" for="remember">Lembrar de mim</label>
-        </div>
-
         <div class="d-grid gap-2">
             <button id="submit-btn" type="submit" class="btn btn-primary btn-lg shadow-sm">
                 Entrar

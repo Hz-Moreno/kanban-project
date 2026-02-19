@@ -20,11 +20,11 @@ $(document).ready(function () {
         const formData = $(this).serialize()
 
         $.ajax({
-            url: '/api/register',
+            url: '/register',
             method: 'POST',
             data: formData,
             success: function (response) {
-                menssager('Consta criada com successo!', 'success')
+                menssager('Consta criada com successo! Por favor faça o login!', 'success')
                 setTimeout(() => {
                     window.location.href = '/login'
                 }, 2400)

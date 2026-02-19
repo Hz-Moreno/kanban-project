@@ -20,11 +20,11 @@ $(document).ready(function () {
         const formData = $(this).serialize()
 
         $.ajax({
-            url: '/api/login',
+            url: '/login',
             method: 'POST',
             data: formData,
             success: function (response) {
-                menssager('Login completo!', 'success')
+                menssager('Login completo! Redirecionando para o painel...', 'success')
                 setTimeout(() => {
                     window.location.href = '/panel'
                 }, 2400)

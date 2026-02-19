@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -17,7 +18,7 @@ class AuthController extends Controller
     {
         try {
             $user = $this->authService->login($request->validated());
-            if (! $user) {
+            if ($user) {
                 return response()->json(
                     [
                         'status' => 'success',
@@ -26,8 +27,15 @@ class AuthController extends Controller
                     Response::HTTP_CREATED,
                 );
             }
-            throw new Exception('Error on process login!');
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Credenciais inválidas. Verifique seu e-mail e senha.',
+            ], Response::HTTP_UNAUTHORIZED);
+
         } catch (Exception $e) {
+            Log::error('L: '.$e->getMessage());
+
             return response()->json(
                 [
                     'status' => 'error',

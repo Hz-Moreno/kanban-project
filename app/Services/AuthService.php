@@ -27,9 +27,15 @@ class AuthService
     public function login(array $credentials): User|false
     {
         try {
-            return Auth::attempt($credentials) ? Auth::user() : false;
-        } catch (Exception $e) {
-            Log::error('Error on login attemp: '.$e->getMessage());
+            if (Auth::attempt($credentials)) {
+                return Auth::user();
+            }
+
+            return false;
+        } catch (\Throwable $e) {
+            Log::error('Error on login attempt: '.$e->getMessage(), [
+                'email' => $credentials['email'] ?? 'not_provided',
+            ]);
 
             return false;
         }
@@ -45,11 +51,15 @@ class AuthService
     public function register(array $data): User
     {
         try {
-            return User::create([
+            $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
+
+            Log::info('User created: '.$user->id);
+
+            return $user;
         } catch (Exception $e) {
             Log::error('Error on register User: '.$e->getMessage());
             throw new Exception('Erron on create User: '.$e->getMessage());

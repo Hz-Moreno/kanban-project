@@ -21,6 +21,7 @@ Para garantir a portabilidade e performance, as seguintes tecnologias foram util
 * **Banco de Dados:** PostgreSQL 15+
 * **Orquestração:** Docker + Laravel Sail
 * **Frontend Assets:** Bootstrap
+* **Testes:** PEST 
 
 ---
 

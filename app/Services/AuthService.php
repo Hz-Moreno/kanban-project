@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\User;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+
+class AuthService
+{
+    /**
+     * Create a new class instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Try attemp a user session and return a valid tokens sessions
+     *
+     ** @param array<string, string> $credentials
+     ** @return array{token: string, user: \App\Models\User} | false
+     */
+    public function login(array $credentials): array|false
+    {
+        try {
+            if (! Auth::attempt($credentials)) {
+                return false;
+            }
+            $user = Auth::user();
+
+            return [
+                'token' => $user->createToken('panel_access_token')->plainTextToken,
+                'user' => $user,
+            ];
+
+        } catch (Exception $e) {
+            Log::error('Error on login attemp: '.$e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Regiser a User in DB
+     *
+     ** @param array<string, string> $data
+     *
+     * @throws Exception
+     */
+    public function register(array $data): User
+    {
+        try {
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error on register User: '.$e->getMessage());
+            throw new Exception('Erron on create User: '.$e->getMessage());
+        }
+    }
+}

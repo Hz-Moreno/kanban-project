@@ -1,0 +1,80 @@
+:root {
+    --kanban-bg: #f4f5f7;
+    --column-width: 300px;
+}
+
+body {
+    background-color: #fff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: hidden;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.kanban-board {
+    display: flex;
+    padding: 5%;
+    gap: 20px;
+    overflow-x: auto;
+    height: calc(100vh - 70px);
+    background-color: var(--kanban-bg);
+}
+
+.kanban-column {
+    min-width: var(--column-width);
+    max-width: var(--column-width);
+    height: fit-content;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column-body {
+    padding: 10px;
+    background: #ebecf0;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.task-card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    cursor: grab;
+    border-left: 4px solid transparent;
+    transition: transform 0.1s;
+}
+
+.task-card:hover {
+    transform: scale(1.02);
+    border-left-color: #0d6efd;
+}
+
+.btn-add-column {
+    min-width: var(--column-width);
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+}
+
+.btn-add-column:hover {
+    background: rgba(0, 0, 0, 0.1);
+}

@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', Password::min(5)->letters()->numbers()],
+            'password' => ['required', Password::min(5)->letters()->numbers(), 'confirmed'],
         ];
     }
 
@@ -41,6 +41,7 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'Este e-mail já está sendo utilizado.',
             'password.required' => 'O campo senha é obrigatório!',
             'password.min' => 'O campo senha deve possuir ao menos 5 caracteres!',
+            'password.confirmed' => 'As senhas não coincidem!',
         ];
     }
 }

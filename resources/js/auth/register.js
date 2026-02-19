@@ -1,4 +1,4 @@
-import menssager from "../toast-menssager.js"
+import menssager from '../toast-menssager.js'
 
 $(document).ready(function () {
     $.ajaxSetup({
@@ -8,7 +8,7 @@ $(document).ready(function () {
         }
     })
 
-    $('#loginForm').on('submit', function (e) {
+    $('#registerForm').on('submit', function (e) {
         e.preventDefault()
 
         $('.is-invalid').removeClass('is-invalid')
@@ -20,18 +20,18 @@ $(document).ready(function () {
         const formData = $(this).serialize()
 
         $.ajax({
-            url: '/api/login',
+            url: '/api/register',
             method: 'POST',
             data: formData,
             success: function (response) {
-                menssager('Login completo!', 'success')
+                menssager('Consta criada com successo!', 'success')
                 setTimeout(() => {
-                    window.location.href = '/panel'
+                    window.location.href = '/login'
                 }, 2400)
             },
             error: function (err) {
 
-                $btn.prop('disabled', false).text('Login')
+                $btn.prop('disabled', false).text('Criar conta')
 
                 if (err.status === 422) {
                     const errors = err.responseJSON.errors

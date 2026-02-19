@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\services\AuthService;
+use App\Services\AuthService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,16 +16,17 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         try {
-            $session = $this->authService->login($request->validated());
-
-            return response()->json(
-                [
-                    'status' => 'success',
-                    'user' => $session['user'],
-                    'token' => $session['token'],
-                ],
-                Response::HTTP_CREATED,
-            );
+            $user = $this->authService->login($request->validated());
+            if (! $user) {
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'user' => $user,
+                    ],
+                    Response::HTTP_CREATED,
+                );
+            }
+            throw new Exception('Error on process login!');
         } catch (Exception $e) {
             return response()->json(
                 [

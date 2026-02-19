@@ -6,6 +6,7 @@
     <title>@yield('title') | Kanban System</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('scripts')
 
     <style>
         body {
@@ -25,6 +26,7 @@
     </style>
 </head>
 <body>
+@include('messages.toast')
 
 <div class="container auth-container">
     <div class="row w-100 justify-content-center">

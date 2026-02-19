@@ -8,30 +8,34 @@
     <p class="text-muted">Criar conta!</p>
 @endsection
 
+@push('scripts')
+    @vite(['resources/js/auth/register.js'])
+@endpush
+
 @section('content')
-    <form id="loginForm">
+    <form id="registerForm">
         <div class="mb-3">
             <label for="name" class="form-label text-secondary small fw-bold">NOME</label>
-            <input type="name" class="form-control form-control-lg" id="name" name="name" placeholder="seu nome completo" required>
+            <input type="name" class="form-control form-control-lg" id="name" name="name" placeholder="seu nome completo">
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label text-secondary small fw-bold">E-MAIL</label>
-            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com" required>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com">
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label text-secondary small fw-bold">SENHA</label>
-            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="*****" required>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="*****">
         </div>
 
         <div class="mb-3">
             <label for="password_confirmation" class="form-label text-secondary small fw-bold">CONFIRME SUA SENHA</label>
-            <input type="password_confirmation" class="form-control form-control-lg" id="password_confirmation" name="password" placeholder="*****" required>
+            <input type="password" class="form-control form-control-lg" id="password_confirmation" name="password_confirmation" placeholder="*****">
         </div>
 
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm" id="submit-btn">
                 Criar conta
             </button>
         </div>

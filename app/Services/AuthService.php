@@ -24,21 +24,13 @@ class AuthService
      ** @param array<string, string> $credentials
      ** @return array{token: string, user: \App\Models\User} | false
      */
-    public function login(array $credentials): array|false
+    public function login(array $credentials): User|false
     {
         try {
-            if (! Auth::attempt($credentials)) {
-                return false;
-            }
-            $user = Auth::user();
-
-            return [
-                'token' => $user->createToken('panel_access_token')->plainTextToken,
-                'user' => $user,
-            ];
-
+            return Auth::attempt($credentials) ? Auth::user() : false;
         } catch (Exception $e) {
             Log::error('Error on login attemp: '.$e->getMessage());
+
             return false;
         }
     }

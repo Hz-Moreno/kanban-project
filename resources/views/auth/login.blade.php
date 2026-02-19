@@ -8,6 +8,10 @@
     <p class="text-muted">Bem-vindo de volta!</p>
 @endsection
 
+@push('scripts')
+    @vite(['resources/js/auth/login.js'])
+@endpush
+
 @section('content')
     <form id="loginForm">
         <div class="mb-3">
@@ -29,7 +33,7 @@
         </div>
 
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+            <button id="submit-btn" type="submit" class="btn btn-primary btn-lg shadow-sm">
                 Entrar
             </button>
         </div>

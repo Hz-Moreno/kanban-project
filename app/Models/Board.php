@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Task;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Board extends Model
 {
+    use HasUuids;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     public function tasks(): HasMany{
         return $this->hasMany(Task::class)->orderBy('position')
     }

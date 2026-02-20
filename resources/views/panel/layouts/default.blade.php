@@ -2,6 +2,7 @@
 <html lang="pt-br">
     @include('panel.layouts.head')
 <body>
+    @include('messages.toast')
 
     @include('panel.layouts.navbar')
 

@@ -16,20 +16,25 @@ body {
 
 .kanban-board {
     display: flex;
-    padding: 5%;
+    padding: 20px; /* Padding fixo é melhor para scroll horizontal */
     gap: 20px;
     overflow-x: auto;
+    overflow-y: hidden; /* Evita scroll vertical no board pai */
+    /* Garante que o board ocupe a tela e as colunas preencham ele */
     height: calc(100vh - 70px);
     background-color: var(--kanban-bg);
+    align-items: flex-start; /* Alinha as colunas no topo */
 }
 
 .kanban-column {
+    flex: 0 0 var(--column-width);
+    width: var(--column-width);
     min-width: var(--column-width);
-    max-width: var(--column-width);
-    height: fit-content;
-    max-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--column-bg);
+    border-radius: 8px;
 }
 
 .column-header {
@@ -40,6 +45,7 @@ body {
 }
 
 .column-body {
+    height: 100%;
     padding: 10px;
     background: #ebecf0;
     border-radius: 8px;

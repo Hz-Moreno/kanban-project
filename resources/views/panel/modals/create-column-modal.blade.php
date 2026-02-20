@@ -7,9 +7,11 @@
             </div>
             <div class="modal-body">
                 <form id="columnForm">
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"
                     <div class="mb-3">
                         <label class="form-label small fw-bold">NOME DA COLUNA</label>
-                        <input type="text" class="form-control" placeholder="Ex: Revisão">
+                        <input name="name" type="text" class="form-control" placeholder="Ex: Revisão">
+
                     </div>
                     <button type="submit" class="btn btn-dark w-100">Adicionar</button>
                 </form>

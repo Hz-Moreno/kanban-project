@@ -1,7 +1,8 @@
 @extends('panel.layouts.default')
 
 @section('content')
-    @include('panel.components.kanban-column')
+    <!-- TODO: DELETE THIS COMPONENTS FROM BLADE, THIS IS USED ON JS NOW -->
+    <!--@include('panel.components.kanban-column')-->
 
-    @include('panel.components.create-column-button')
+    <!--@include('panel.components.create-column-button')-->
 @endsection

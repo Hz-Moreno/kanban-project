@@ -14,13 +14,13 @@ $(document).ready(function () {
         $('.is-invalid').removeClass('is-invalid')
         $('.invalid-feedback').remove()
 
-        const $btn = $('#submit-btn')
-        $btn.prop('disabled', true).text('Processando...')
+        const btn = $('#submit-btn')
+        btn.prop('disabled', true).text('Processando...')
 
         const formData = $(this).serialize()
 
         $.ajax({
-            url: '/register',
+            url: '/register/create',
             method: 'POST',
             data: formData,
             success: function (response) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
             },
             error: function (err) {
 
-                $btn.prop('disabled', false).text('Criar conta')
+                btn.prop('disabled', false).text('Criar conta')
 
                 if (err.status === 422) {
                     const errors = err.responseJSON.errors

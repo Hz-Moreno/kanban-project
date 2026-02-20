@@ -14,13 +14,13 @@ $(document).ready(function () {
         $('.is-invalid').removeClass('is-invalid')
         $('.invalid-feedback').remove()
 
-        const $btn = $('#submit-btn')
-        $btn.prop('disabled', true).text('Processando...')
+        const btn = $('#submit-btn')
+        btn.prop('disabled', true).text('Processando...')
 
         const formData = $(this).serialize()
 
         $.ajax({
-            url: '/login',
+            url: '/login/create',
             method: 'POST',
             data: formData,
             success: function (response) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
             },
             error: function (err) {
 
-                $btn.prop('disabled', false).text('Login')
+                btn.prop('disabled', false).text('Login')
 
                 if (err.status === 422) {
                     const errors = err.responseJSON.errors
@@ -40,6 +40,8 @@ $(document).ready(function () {
                         input.addClass('is-invalid')
                         input.after(`<div class="invalid-feedback">${messages[0]}</div>`)
                     })
+                } else if(err.status === 401) {
+                    menssager('Credenciais inválidas!')
                 } else {
                     menssager('Internal Error!')
                 }

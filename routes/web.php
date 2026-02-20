@@ -1,10 +1,16 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 
 // Auth Routes
+
+Route::get('/', function () {
+    return redirect()->to('/login');
+});
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login')->middleware('guest');
@@ -17,3 +23,12 @@ Route::post('/register/create', [AuthController::class, 'register']);
 Route::post('/login/create', [AuthController::class, 'login']);
 
 Route::get('/panel', [PanelController::class, 'index'])->middleware('auth');
+
+Route::post('/board', [BoardController::class, 'create']);
+
+// Board Routes
+Route::get('/board/', [BoardController::class, 'find']);
+Route::post('/board', [BoardController::class, 'create']);
+Route::put('/board/move', [BoardController::class, 'move']);
+Route::put('/board/{board}', [BoardController::class, 'update']);
+Route::delete('/board/{board}', [BoardController::class, 'delete']);

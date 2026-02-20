@@ -11,7 +11,7 @@ class CreateBoardRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,17 +23,18 @@ class CreateBoardRequest extends FormRequest
     {
         return [
             'name' => ['string', 'required'],
+            // 'positon' => ['required', 'int'],
             'user_id' => ['string', 'required'],
         ];
     }
 
     public function messages(): array
     {
-        return[
+        return [
             'name.required' => 'O campo nome é obrigatório!',
             'name.string' => 'O campo nome deve ser uma string válida!',
             'user_id.required' => 'O id do usuario é obrigatório!',
-            'user_id.string' => 'O id do usuario deve ser um string válida!'
-        ]
+            'user_id.string' => 'O id do usuario deve ser um string válida!',
+        ];
     }
 }

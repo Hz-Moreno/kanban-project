@@ -129,4 +129,10 @@ Certifique-se de que os containers do Laravel Sail estejam ativos e execute:
 
 ### Demo
 
+
+
+https://github.com/user-attachments/assets/d4cb868d-9f27-48bf-a037-b22ae9594862
+
+
+
 ###

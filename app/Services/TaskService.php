@@ -1,28 +1,28 @@
 <?php
 
-namespace App\services;
+namespace App\Services;
 
 use App\Models\Task;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class TaskService
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function delete(Task $task): bool
     {
         try {
-            return $task->delete();
-        } catch (Exception $e) {
-            Log::error('Error on delete task: '.$e->getMessage());
+            $deleted = $task->delete();
+            Log::info('Task deleted successfully', ['task_id' => $task->id]);
+
+            return $deleted;
+        } catch (Throwable $e) {
+            Log::error('Failed to delete task', [
+                'task_id' => $task->id,
+                'message' => $e->getMessage(),
+            ]);
 
             return false;
         }
@@ -30,20 +30,35 @@ class TaskService
 
     public function create(array $data, User $user): Task
     {
-        try {
-            $task = Task::create([
-                'title' => $data['title'],
-                'board_id' => $data['board_id'],
-                'user_id' => $user->id,
-                'position' => Task::where('board_id', $data['board_id'])->count() ?? 0,
-                'priority' => 0,
-                'description' => $data['description'],
-            ]);
+        return DB::transaction(function () use ($data, $user) {
+            try {
+                $nextPosition = Task::where('board_id', $data['board_id'])->count();
 
-            return $task;
-        } catch (Exception $e) {
-            Log::error('Fail on create taks: '.$e->getMessage());
-            throw $e;
-        }
+                $task = Task::create([
+                    'title' => $data['title'],
+                    'board_id' => $data['board_id'],
+                    'user_id' => $user->id,
+                    'position' => $nextPosition,
+                    'priority' => 0, // Default priority
+                    'description' => $data['description'] ?? null,
+                ]);
+
+                Log::info('Task created successfully', [
+                    'task_id' => $task->id,
+                    'board_id' => $data['board_id'],
+                    'user_id' => $user->id,
+                ]);
+
+                return $task;
+            } catch (Throwable $e) {
+                Log::error('Task creation failed', [
+                    'user_id' => $user->id,
+                    'board_id' => $data['board_id'] ?? 'N/A',
+                    'message' => $e->getMessage(),
+                ]);
+
+                throw new Exception('Unable to create task. Please verify your board information.');
+            }
+        });
     }
 }

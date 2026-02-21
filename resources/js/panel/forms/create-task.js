@@ -1,6 +1,6 @@
 import menssager from "../../toast-menssager"
 import {taskTemplate} from "../task.js"
-
+import { initSortable } from "../init-sortable.js"
 
 $(document).ready(function () {
     $.ajaxSetup({
@@ -26,17 +26,20 @@ $(document).ready(function () {
             method: 'POST',
             data: formData,
             success: function(response) {
-                const content = response.data;
-                const html = taskTemplate(content);
+                setTimeout(() => {
+                    const content = response.data;
+                    const html = taskTemplate(content);
 
-                $(`#${boardId} .column-body`).append(html);
+                    $(`#${boardId} .column-body`).append(html);
 
-                form[0].reset();
-                const modalEl = document.getElementById('modalTask');
-                const modalInstance = bootstrap.Modal.getInstance(modalEl);
-                modalInstance?.hide();
+                    form[0].reset();
+                    const modalEl = document.getElementById('modalTask');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    modalInstance?.hide();
+                    initSortable($('.kanban-board'));
 
-                menssager("Tarefa criada com sucesso!", "success");
+                    menssager("Tarefa criada com sucesso!", "success");
+                }, 100)
             },
             error: function (err) {
                 const errorMsg = err.responseJSON?.message || "Erro ao criar task.";

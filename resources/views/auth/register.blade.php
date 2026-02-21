@@ -16,12 +16,12 @@
     <form id="registerForm">
         <div class="mb-3">
             <label for="name" class="form-label text-secondary small fw-bold">NOME</label>
-            <input type="name" class="form-control form-control-lg" id="name" name="name" placeholder="seu nome completo">
+            <input autocomplete="off" type="name" class="form-control form-control-lg" id="name" name="name" placeholder="seu nome completo">
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label text-secondary small fw-bold">E-MAIL</label>
-            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com">
+            <input autocomplete="off" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com">
         </div>
 
         <div class="mb-3">

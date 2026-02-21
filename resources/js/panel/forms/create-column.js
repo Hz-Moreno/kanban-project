@@ -1,6 +1,8 @@
 import { columnTemplate } from "../column";
 import menssager from "../../toast-menssager";
 import { panel_boards } from "../global-board.js"
+import { initSortable } from "../init-sortable.js";
+
 
 $(document).ready(function () {
     $.ajaxSetup({
@@ -36,6 +38,7 @@ $(document).ready(function () {
 
                 panel_boards.content.push(response.data)
                 console.log("PUSH: ", panel_boards.content)
+                initSortable()
                 menssager("Coluna criada com sucesso!", "success");
             },
             error: function (err) {

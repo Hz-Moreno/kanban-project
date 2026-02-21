@@ -1,4 +1,5 @@
 import menssager from "../../toast-menssager";
+import { panel_boards } from "../global-board";
 
 $(document).ready(function () {
     const board = $('.kanban-board');
@@ -47,6 +48,15 @@ $(document).ready(function () {
             method: 'PUT',
             data:  JSON.stringify(formData),
             success: function () {
+                if (panel_boards && panel_boards.content) {
+                    const column = panel_boards.content.find(c => c.id === columnId);
+                    if (column) {
+                        column.title = newName;
+                        console.log('Global State Atualizado:', panel_boards.content);
+                    }
+                }
+
+
                 finishEdit(header, newName, columnId);
                 menssager("Nome atualizado!", "success");
             },

@@ -2,39 +2,9 @@ import { saveNewPositions, columnTemplate } from "./column.js";
 import menssager from "../toast-menssager.js";
 import { populateBoard } from "./task.js"
 import { panel_boards } from "./global-board.js"
+import { initSortable } from "./init-sortable.js"
 
-export function initSortable(board) {
-    const el = board[0];
-    if (!el) {
-        menssager("Erro ao inicializar sortable!")
-        return
-    }
-    import('sortablejs').then((Sortable) => {
-        new Sortable.default(el, {
-            animation: 150,
-            handle: '.column-header',
-            onEnd: saveNewPositions
-        });
 
-        const taskLists = el.querySelectorAll('.column-body')
-        taskLists.forEach(list => {
-            new Sortable.default(list, {
-                group: 'shared-tasks',
-                animation: 150,
-                ghostClass: 'sortable-ghost',
-                onEnd: (evt) => {
-                    saveNewTaskPositions(evt);
-                }
-            })
-        })
-    });
-}
-
-export function saveNewTaskPositions() {
-    setTimeout(() => {
-        organizeBoards();
-    }, 100);
-}
 
 function organizeBoards() {
     const payload = {

@@ -33,6 +33,7 @@ Route::post('/board', [BoardController::class, 'create']);
 Route::put('/board/move', [BoardController::class, 'move']);
 Route::put('/board/{board}', [BoardController::class, 'update']);
 Route::delete('/board/{board}', [BoardController::class, 'delete']);
+Route::post('/boards/organize', [BoardController::class, 'organizeBoardTasks']);
 
 Route::post('/task', [TaskController::class, 'create']);
 Route::get('/task', [TaskController::class, 'get']);

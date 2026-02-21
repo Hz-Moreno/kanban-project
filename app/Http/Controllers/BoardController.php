@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBoardRequest;
 use App\Http\Requests\FindBoardRequest;
 use App\Http\Requests\MoveBoardRequest;
+use App\Http\Requests\OrganizeTasksOnBoardRequest;
 use App\Http\Requests\UpdateBoardRequest;
 use App\Models\Board;
 use App\Services\BoardService;
@@ -62,6 +63,13 @@ class BoardController extends Controller
     public function delete(Request $request, Board $board): JsonResponse
     {
         $this->boardService->delete($board);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function organizeBoardTasks(OrganizeTasksOnBoardRequest $request): JsonResponse
+    {
+        $this->boardService->organize($request->all());
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

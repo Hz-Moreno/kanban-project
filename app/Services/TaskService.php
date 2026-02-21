@@ -46,19 +46,4 @@ class TaskService
             throw $e;
         }
     }
-
-    public function move(int $task_id, int $new_board_id): Task
-    {
-        try {
-            $task = Task::find($task_id);
-            $old_board = $task->board_id;
-
-            $task->update(['board_id' => $new_board_id]);
-
-            return $task;
-        } catch (Exception $e) {
-            Log::error('Errot to move task: '.$e->getMessage());
-            throw $e;
-        }
-    }
 }

@@ -5,15 +5,66 @@ import { panel_boards } from "./global-board.js"
 
 export function initSortable(board) {
     const el = board[0];
-    if (el) {
-        import('sortablejs').then((Sortable) => {
-            new Sortable.default(el, {
+    if (!el) {
+        menssager("Erro ao inicializar sortable!")
+        return
+    }
+    import('sortablejs').then((Sortable) => {
+        new Sortable.default(el, {
+            animation: 150,
+            handle: '.column-header',
+            onEnd: saveNewPositions
+        });
+
+        const taskLists = el.querySelectorAll('.column-body')
+        taskLists.forEach(list => {
+            new Sortable.default(list, {
+                group: 'shared-tasks',
                 animation: 150,
-                handle: '.column-header',
-                onEnd: saveNewPositions
+                ghostClass: 'sortable-ghost',
+                onEnd: (evt) => {
+                    saveNewTaskPositions(evt);
+                }
+            })
+        })
+    });
+}
+
+export function saveNewTaskPositions() {
+    setTimeout(() => {
+        organizeBoards();
+    }, 100);
+}
+
+function organizeBoards() {
+    const payload = {
+        tasks: []
+    };
+
+    $('.kanban-column').each(function () {
+        const columnId = $(this).attr('id');
+
+        $(this).find('.task-card').each(function (index) {
+            payload.tasks.push({
+                id: $(this).attr('id'),
+                position: index,
+                board_id: columnId
             });
         });
-    }
+    });
+
+    $.ajax({
+        url: '/boards/organize',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        success: function (response) {
+            console.log('Board sincronizado com sucesso');
+        },
+        error: function (err) {
+            console.error('Erro ao sincronizar board', err);
+        }
+    });
 }
 
 export function loadColumns(board, callback) {

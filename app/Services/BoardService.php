@@ -66,4 +66,24 @@ class BoardService
     {
         return $board->delete();
     }
+
+    public function organize(array $data): void
+    {
+        $tasks = $data['tasks'] ?? [];
+        if (empty($tasks)) {
+            return;
+        }
+
+        DB::transaction(function () use ($tasks) {
+            foreach ($tasks as $taskData) {
+                DB::table('tasks')
+                    ->where('id', $taskData['id'])
+                    ->update([
+                        'board_id' => $taskData['board_id'] ?? $taskData['column_id'],
+                        'position' => $taskData['position'],
+                        'updated_at' => now(),
+                    ]);
+            }
+        });
+    }
 }

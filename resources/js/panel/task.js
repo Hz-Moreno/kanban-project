@@ -50,34 +50,11 @@ $(document).ready(function () {
     }
 });
 
-export function saveNewTaskPositions() {
-    const movementData = [];
 
-    $('.kanban-column').each(function (index) {
-        const columnId = $(this).attr('id');
-        $(this).attr('data-position', index);
-
-        movementData.push({
-            board_id: columnId,
-            position: index
-        });
-    });
-
-    $.ajax({
-        url: '/task/move',
-        method: 'PUT',
-        contentType: 'application/json',
-        data: JSON.stringify({data: movementData}),
-        success: function (response) { },
-        error: function (err) {
-            menssager('Error ao processar movimento de colunas')
-        }
-    })
-}
 
 export function taskTemplate(content) {
     return `
-    <div class="task-card p-3 mb-2 bg-white rounded shadow-sm border-start border-4 border-primary" id="${content.id}" draggable="true">
+    <div class="task-card p-3 mb-2 bg-white rounded shadow-sm border-start border-4 border-primary" id="${content.id}" draggable="true" data-positon="${content.position}">
             <p class="mb-1 fw-bold text-dark">${content.title}</p>
             <p class="mb-0 small text-muted text-truncate" style="max-height: 50px; overflow: hidden;">
                 ${content.description}

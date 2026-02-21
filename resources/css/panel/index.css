@@ -70,3 +70,42 @@ body {
     background-color: #f0f0f0;
     border: 2px dashed #ccc;
 }
+
+.badge-rainbow {
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #8b00ff,
+        #ff0000
+    );
+    background-size: 400% 400%;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 0.5em 0.8em;
+    animation: rainbow-animation 5s ease infinite;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.badge-rainbow:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+@keyframes rainbow-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -7,6 +7,9 @@ use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -70,5 +73,15 @@ class AuthController extends Controller
                 Response::HTTP_INTERNAL_SERVER_ERROR,
             );
         }
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

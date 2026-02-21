@@ -9,9 +9,15 @@
             <div class="dropdown">
                 <img src="https://ui-avatars.com/api/?name=User" class="rounded-circle dropdown-toggle" width="35" role="button" data-bs-toggle="dropdown">
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <!--<li><a class="dropdown-item" href="#">Perfil</a></li>-->
-                    <!--<li><hr class="dropdown-divider"></li>-->
-                    <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+                    <a class="dropdown-item text-danger"
+                        href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Sair
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </ul>
             </div>
         </div>

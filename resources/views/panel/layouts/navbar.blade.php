@@ -2,10 +2,8 @@
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-primary" href="#">Kanban</a>
         <div class="d-flex">
-            <button class="btn btn-sm btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#modalColumn">
-                <i class="bi bi-folder-plus"></i> Novo Quadro
-            </button>
-            <button class="btn btn-sm btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#modalQuadro">
+            <button id="addColumnBtn" class="btn btn-sm btn-outline-primary me-2">Adicionar</button>
+            <button class="btn btn-sm btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#modalTask">
                 <i class="bi bi-folder-plus"></i> Nova Tarefa
             </button>
             <div class="dropdown">

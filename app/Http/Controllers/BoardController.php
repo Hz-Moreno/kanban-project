@@ -31,7 +31,7 @@ class BoardController extends Controller
 
     public function create(CreateBoardRequest $request): JsonResponse
     {
-        $board = $this->boardService->create($request->validated());
+        $board = $this->boardService->create($request->validated(), $request->user());
 
         return response()->json([
             'status' => 'success',

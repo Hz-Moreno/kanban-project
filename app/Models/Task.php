@@ -14,6 +14,8 @@ class Task extends Model
 
     public $incrementing = false;
 
+    protected $fillable = ['title', 'board_id', 'user_id', 'description', 'position', 'priority'];
+
     public function board(): BelongsTo
     {
         return $this->belongsTo(Board::class);

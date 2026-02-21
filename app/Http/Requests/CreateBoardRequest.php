@@ -23,8 +23,8 @@ class CreateBoardRequest extends FormRequest
     {
         return [
             'name' => ['string', 'required'],
-            // 'positon' => ['required', 'int'],
-            'user_id' => ['string', 'required'],
+            'position' => ['required', 'int'],
+            // 'user_id' => ['string', 'required'],
         ];
     }
 

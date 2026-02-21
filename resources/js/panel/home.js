@@ -1,6 +1,7 @@
 import { saveNewPositions, columnTemplate } from "./column.js";
 import menssager from "../toast-menssager.js";
-
+import { populateBoard } from "./task.js"
+import { panel_boards } from "./global-board.js"
 
 export function initSortable(board) {
     const el = board[0];
@@ -15,12 +16,13 @@ export function initSortable(board) {
     }
 }
 
-export function loadColumns(board) {
+export function loadColumns(board, callback) {
     $.ajax({
         url: '/board',
         method: 'GET',
         success: function (response) {
-            console.log(response)
+            panel_boards.content = response.data || [];
+            console.log("INIT: ", panel_boards.content)
             if (response.data && response.data.length > 0) {
                 board.empty();
 
@@ -28,6 +30,8 @@ export function loadColumns(board) {
                     const html = columnTemplate(column.id, column.title, column.position);
                     board.append(html);
                 });
+
+                if (callback) callback();
             }
 
             initSortable(board)
@@ -40,6 +44,26 @@ export function loadColumns(board) {
 
 $(document).ready(function () {
     let board = $('.kanban-board');
-    console.log('carregado cols')
-    loadColumns(board);
+    loadColumns(board, function () {
+        setTimeout(() => {
+            loadTasks();
+        }, 1000)
+    });
 });
+
+export function loadTasks() {
+    $.ajax({
+        url: '/task',
+        method: 'GET',
+        data: {},
+        success: function (response) {
+            response.data.forEach(t => {
+                console.log('ai', t)
+            })
+            populateBoard(response.data);
+        },
+        error: function (err) {
+            menssager("Erro ao buscar tarefas!")
+        }
+    })
+}

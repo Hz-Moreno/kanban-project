@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Board::class)->orderBy('position');
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Board::class);
+    }
 }

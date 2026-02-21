@@ -61,8 +61,8 @@ $(document).ready(function () {
     function finishEdit(header, name, id) {
         header.find('.edit-column-input').replaceWith(`<span class="fw-bold text-secondary text-uppercase small column-title">${name}</span>`);
         header.find('.header-actions').html(`
-            <button class="btn btn-sm btn-light border btn-add-task" data-bs-toggle="modal" data-bs-target="#modalTask" data-column-id="${id}">
-                +
+            <button  class="del-column-btn btn btn-sm btn-danger border btn-add-task" data-column-id="${id}">
+                -
             </button>
         `);
     }

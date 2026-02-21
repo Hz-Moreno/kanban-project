@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 // Auth Routes
@@ -32,3 +33,7 @@ Route::post('/board', [BoardController::class, 'create']);
 Route::put('/board/move', [BoardController::class, 'move']);
 Route::put('/board/{board}', [BoardController::class, 'update']);
 Route::delete('/board/{board}', [BoardController::class, 'delete']);
+
+Route::post('/task', [TaskController::class, 'create']);
+Route::get('/task', [TaskController::class, 'get']);
+Route::delete('/task/{task}', [TaskController::class, 'delete']);

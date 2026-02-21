@@ -1,4 +1,5 @@
 import menssager from "../../toast-menssager";
+import {panel_boards} from "../global-board.js"
 
 export function deleteColumn(board, id) {
     const column = $(`#${id}`)
@@ -25,6 +26,7 @@ $(document).ready(function () {
             success: function () {
                 menssager("Quadro deletado!", "success")
                 deleteColumn(board, columnId)
+                panel_boards.content = panel_boards.content.filter(item => item.id !== columnId);
             },
             error: function () {
                 menssager("Erro ao deletar quadro!")

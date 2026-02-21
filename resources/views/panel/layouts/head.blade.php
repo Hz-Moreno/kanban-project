@@ -13,6 +13,8 @@
         'resources/js/panel/home.js',
         'resources/js/panel/forms/create-column.js',
         'resources/js/panel/forms/edit-column.js',
-        'resources/js/panel/forms/delete-column.js'
+        'resources/js/panel/forms/delete-column.js',
+        'resources/js/panel/forms/create-task.js',
+        'resources/js/panel/forms/delete-task.js'
     ])
 </head>

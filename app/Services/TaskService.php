@@ -3,6 +3,7 @@
 namespace App\services;
 
 use App\Models\Task;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -16,11 +17,9 @@ class TaskService
         //
     }
 
-    public function delete(int $task_id): bool
+    public function delete(Task $task): bool
     {
         try {
-            $task = Task::find($task_id);
-
             return $task->delete();
         } catch (Exception $e) {
             Log::error('Error on delete task: '.$e->getMessage());
@@ -29,14 +28,16 @@ class TaskService
         }
     }
 
-    public function create(array $data): Task
+    public function create(array $data, User $user): Task
     {
         try {
             $task = Task::create([
                 'title' => $data['title'],
-                'board_id' => $data['bodard_id'],
-                'user_id' => $data['user_id'],
-                'positon' => Task::where('board_id', $data['board_id'])->count(),
+                'board_id' => $data['board_id'],
+                'user_id' => $user->id,
+                'position' => Task::where('board_id', $data['board_id'])->count() ?? 0,
+                'priority' => 0,
+                'description' => $data['description'],
             ]);
 
             return $task;

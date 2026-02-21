@@ -1,5 +1,6 @@
 import { columnTemplate } from "../column";
 import menssager from "../../toast-menssager";
+import { panel_boards } from "../global-board.js"
 
 $(document).ready(function () {
     $.ajaxSetup({
@@ -9,44 +10,32 @@ $(document).ready(function () {
         }
     })
 
-    const columnForm = $('#columnForm');
+    const addColumnBtn = $('#addColumnBtn');
     const board = $('.kanban-board');
 
-    columnForm.on('submit', function (e) {
+    addColumnBtn.on('click', function (e) {
         e.preventDefault();
 
-        const form = $(this);
-        const input = form.find('input');
-        const columnName = input.val().trim().toUpperCase();
-        const btn = form.find('button[type="submit"]');
         const position = $('.kanban-board .kanban-column').length;
-
-        if (!columnName) {
-            menssager("O nome da coluna é obrigatório.");
-            return;
+        const formData = {
+            name: 'Novo quadro!',
+            position: position,
         }
 
-        const formData = form.serializeArray();
-        formData.push({ name: "position", value: position });
-
-        btn.prop('disabled', true).text('Salvando...');
-        console.log(position);
         $.ajax({
             url: '/board',
             method: 'POST',
             data: formData,
             success: function (response) {
-
                 const columnData = response.data;
-
                 const html = columnTemplate(columnData.id, columnData.title, position);
 
                 board.append(html);
-
-                form[0].reset();
                 const modalInstance = bootstrap.Modal.getInstance(document.getElementById('modalColumn'));
                 modalInstance?.hide();
 
+                panel_boards.content.push(response.data)
+                console.log("PUSH: ", panel_boards.content)
                 menssager("Coluna criada com sucesso!", "success");
             },
             error: function (err) {
@@ -54,7 +43,7 @@ $(document).ready(function () {
                 menssager(errorMsg);
             },
             complete: function() {
-                btn.prop('disabled', false).text('Adicionar');
+
             }
         });
     });

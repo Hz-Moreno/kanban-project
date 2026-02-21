@@ -25,13 +25,13 @@ class BoardService
             ->toArray();
     }
 
-    public function create(array $data): Board
+    public function create(array $data, User $user): Board
     {
         try {
             return Board::create([
                 'title' => $data['name'],
-                'position' => $data['position'] ?? 0,
-                'user_id' => $data['user_id'],
+                'position' => $data['position'],
+                'user_id' => $user->id,
             ]);
         } catch (Exception $e) {
             Log::error('Error on create board: '.$e->getMessage());

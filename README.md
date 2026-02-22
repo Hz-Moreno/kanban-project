@@ -53,7 +53,7 @@ Você precisa ter apenas o **Docker** instalado em sua máquina.
 
 ```bash
 git clone <url-do-repositorio>
-cd kanban_project
+cd kanban-project
 ```
 
 ### 2. Configurar Variáveis de Ambiente
@@ -62,30 +62,49 @@ cd kanban_project
 cp .env.example .env
 ```
 
-### 3. Subir os Containers (Laravel Sail)
+‼️ Certifique-se de configurar as variáveis do arquivo .env após a cópia. Por padrão, o projeto será iniciado utilizando a configuração padrão do Laravel Sail.
 
-Na primeira execução, o Docker fará o build das imagens personalizadas para o PHP 8.2:
+### 3. Instalação e Containers (Laravel Sail)
+
+Como o projeto utiliza Docker, não é necessário ter PHP ou Composer instalados localmente.
+
+‼️ Certifique-se de que o Docker esteja instalado e em execução na sua máquina antes de continuar.
+
+```bash
+# Você pode verificar se o Docker está rodando com:
+docker --version
+```
+
+### A. Instalação das dependências PHP:
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
+### B. Subir os Containers
 
 ```bash
 ./vendor/bin/sail up -d
 ```
 
-### 4. Instalação e Migrações
+### 4. Configuração Final
 
-Com os containers ativos, rode os comandos abaixo para finalizar a configuração:
+Com os containers rodando, execute o setup do banco de dados e chaves:
 
 ```bash
-# Instalar dependências do Composer
-./vendor/bin/sail composer install
-
-# Gerar chave da aplicação
+# Gerar chave da aplicação e rodar migrations
 ./vendor/bin/sail artisan key:generate
-
-# Rodar as migrações do PostgreSQL
 ./vendor/bin/sail artisan migrate
 ```
 
 ### 5. Inicializando frontend assets
+
+Compile os arquivos de estilo e scripts (Bootstrap):
 
 ```bash
 # Instalar dependências do NPM

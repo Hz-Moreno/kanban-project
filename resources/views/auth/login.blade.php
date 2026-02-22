@@ -16,7 +16,7 @@
     <form id="loginForm">
         <div class="mb-3">
             <label for="email" class="form-label text-secondary small fw-bold">E-MAIL</label>
-            <input autocomplete="off" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com" required>
+            <input autocomplete="off" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="seu@email.com" >
         </div>
 
         <div class="mb-3">
@@ -24,7 +24,7 @@
                 <label for="password" class="form-label text-secondary small fw-bold">SENHA</label>
                 <!--<a href="#" class="text-decoration-none small">Esqueceu a senha?</a>-->
             </div>
-            <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" >
         </div>
 
         <div class="d-grid gap-2">

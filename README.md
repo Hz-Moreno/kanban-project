@@ -1,5 +1,7 @@
 <p align="center">
+  <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
   <img src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres">
   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
 </p>
@@ -102,27 +104,22 @@ O projeto estará disponível em: http://localhost
 
 ### 🧪 Testes Automatizados
 
-O projeto utiliza o PEST PHP, um framework de testes focado em simplicidade e elegância, para garantir a integridade das regras de negócio e das rotas da aplicação.
+O projeto utiliza o PHPUnit, o framework de testes padrão do ecossistema Laravel, para garantir a integridade das regras de negócio, a estabilidade das rotas e a persistência correta dos dados.
 
-Cobertura de Testes:
-Unitários: Validação das regras de negócio dentro das camadas de Services.
+Estrutura da Cobertura:
+Unit Tests (Testes Unitários): Focados na validação isolada das regras de negócio dentro das camadas de Services e Actions, sem dependência de banco de dados.
 
-Feature: Testes de integração das rotas do Kanban, garantindo que o fluxo de movimentação de tarefas e persistência de dados (Upsert/Update) funcione corretamente.
+Feature Tests (Testes de Funcionalidade): Testes de integração que simulam requisições HTTP para as rotas do Kanban, garantindo que o fluxo de movimentação de tarefas, permissões e persistência (Upsert/Update) funcionem conforme o esperado.
 
-Database: Verificação de integridade e constraints do PostgreSQL.
+Database & Integrity: Verificação rigorosa das constraints do PostgreSQL e garantia de que os Factories e Seeders mantêm o estado consistente do banco.
 
 Como rodar os testes:
-Certifique-se de que os containers do Laravel Sail estejam ativos e execute:
+Certifique-se de que o ambiente Laravel Sail esteja em execução e utilize os comandos abaixo:
 
 ```bash
 # Rodar todos os testes
-./vendor/bin/sail pest
+./vendor/bin/sail test
 
-# Rodar os testes com o relatório de cobertura (Coverage)
-./vendor/bin/sail pest --coverage
-
-# Rodar apenas um grupo específico de testes
-./vendor/bin/sail pest --group=kanban
 ```
 
 ---

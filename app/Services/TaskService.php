@@ -39,7 +39,7 @@ class TaskService
                     'board_id' => $data['board_id'],
                     'user_id' => $user->id,
                     'position' => $nextPosition,
-                    'priority' => 0, // Default priority
+                    'priority' => 0,
                     'description' => $data['description'] ?? null,
                 ]);
 

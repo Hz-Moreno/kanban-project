@@ -29,7 +29,7 @@ Para garantir a portabilidade e performance, as seguintes tecnologias foram util
 - **Banco de Dados:** PostgreSQL 15+
 - **Orquestração:** Docker + Laravel Sail
 - **Frontend Assets:** Bootstrap
-- **Testes:** PEST
+- **Testes:** PHPUnit
 
 ---
 
@@ -128,5 +128,7 @@ Certifique-se de que os containers do Laravel Sail estejam ativos e execute:
 ---
 
 ### Demo
+
+https://github.com/user-attachments/assets/d4cb868d-9f27-48bf-a037-b22ae9594862
 
 ###

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTaskRequest;
-use App\Http\Requests\MoveTaskRequest;
 use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\JsonResponse;
@@ -41,12 +40,5 @@ class TaskController extends Controller
         $this->taskService->delete($task);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
-    }
-
-    public function move(MoveTaskRequest $request, Task $task): JsonResponse
-    {
-        $this->taskService->move($request->validated(), $task);
-
-        return response()->json(null);
     }
 }

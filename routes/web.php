@@ -24,8 +24,8 @@ Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/panel', [PanelController::class, 'index'])->middleware('auth');
 
-Route::get('/board/', [BoardController::class, 'find']);
-Route::post('/board', [BoardController::class, 'create']);
+Route::get('/board/', [BoardController::class, 'find'])->middleware('auth');
+Route::post('/board', [BoardController::class, 'create'])->middleware('auth');
 Route::put('/board/move', [BoardController::class, 'move']);
 Route::put('/board/{board}', [BoardController::class, 'update']);
 Route::delete('/board/{board}', [BoardController::class, 'delete']);

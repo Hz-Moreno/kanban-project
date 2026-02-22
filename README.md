@@ -53,7 +53,7 @@ Você precisa ter apenas o **Docker** instalado em sua máquina.
 
 ```bash
 git clone <url-do-repositorio>
-cd kanban_project
+cd kanban-project
 ```
 
 ### 2. Configurar Variáveis de Ambiente

@@ -22,8 +22,8 @@
                     made with ❤️ | by Hezrai Moreno
                 </div>
                 <div>
-                    <a href="https://www.linkedin.com/in/hezrai-moreno-665008391/" class="text-decoration-none text-muted me-3">Linkedin</a>
-                    <a href="https://github.com/Hz-Moreno?tab=repositories" class="text-decoration-none text-muted">Git Hub</a>
+                    <a target="_blank" href="https://www.linkedin.com/in/hezrai-moreno-665008391/" class="text-decoration-none text-muted me-3">Linkedin</a>
+                    <a target="_blank" href="https://github.com/Hz-Moreno" class="text-decoration-none text-muted">Git Hub</a>
                 </div>
                 <div class="d-none d-md-inline">
                     <a href="https://portifolio-omega-tan-iq1slmh9p4.vercel.app/" target="_blank" class="text-decoration-none">

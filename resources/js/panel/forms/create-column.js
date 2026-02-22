@@ -38,7 +38,7 @@ $(document).ready(function () {
 
                 panel_boards.content.push(response.data)
                 console.log("PUSH: ", panel_boards.content)
-                initSortable()
+                initSortable($('.kanban-board'));
                 menssager("Coluna criada com sucesso!", "success");
             },
             error: function (err) {

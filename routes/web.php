@@ -22,11 +22,11 @@ Route::post('/register/create', [AuthController::class, 'register']);
 Route::post('/login/create', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/panel', [PanelController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/panel', [PanelController::class, 'index']);
 
-    Route::get('/board/', [BoardController::class, 'find'])->middleware('auth');
-    Route::post('/board', [BoardController::class, 'create'])->middleware('auth');
+    Route::get('/board/', [BoardController::class, 'find']);
+    Route::post('/board', [BoardController::class, 'create']);
     Route::put('/board/move', [BoardController::class, 'move']);
     Route::put('/board/{board}', [BoardController::class, 'update']);
     Route::delete('/board/{board}', [BoardController::class, 'delete']);
@@ -35,4 +35,4 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/task', [TaskController::class, 'create']);
     Route::get('/task', [TaskController::class, 'get']);
     Route::delete('/task/{task}', [TaskController::class, 'delete']);
-})
+});

@@ -92,15 +92,6 @@ docker run --rm \
 ./vendor/bin/sail up -d
 ```
 
-### C. Configuração Inicial da Aplicação
-
-Após os containers estarem ativos, execute os comandos de setup para preparar a aplicação:
-
-```bash
-# Gerar a chave da aplicação (se necessário)
-./vendor/bin/sail artisan key:generate
-```
-
 ### 4. Configuração Final
 
 Com os containers rodando, execute o setup do banco de dados e chaves:

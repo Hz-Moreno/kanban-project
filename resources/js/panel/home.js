@@ -10,7 +10,6 @@ export function loadColumns(board, callback) {
         method: 'GET',
         success: function (response) {
             panel_boards.content = response.data || [];
-            console.log("INIT: ", panel_boards.content)
             if (response.data && response.data.length > 0) {
                 board.empty();
 
@@ -46,7 +45,7 @@ export function loadTasks() {
         data: {},
         success: function (response) {
             response.data.forEach(t => {
-                console.log('ai', t)
+                //
             })
             populateBoard(response.data);
         },

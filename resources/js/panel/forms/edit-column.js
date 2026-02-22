@@ -52,7 +52,6 @@ $(document).ready(function () {
                     const column = panel_boards.content.find(c => c.id === columnId);
                     if (column) {
                         column.title = newName;
-                        console.log('Global State Atualizado:', panel_boards.content);
                     }
                 }
 

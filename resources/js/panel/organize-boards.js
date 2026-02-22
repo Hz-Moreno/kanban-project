@@ -21,7 +21,7 @@ export function organizeBoards() {
         contentType: 'application/json',
         data: JSON.stringify(payload),
         success: function (response) {
-            console.log('Board sincronizado com sucesso');
+            //
         },
         error: function (err) {
             console.error('Erro ao sincronizar board', err);

@@ -6,11 +6,11 @@
   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
 </p>
 
-# 📋 Kanban Project - Laravel 11
+# Kanban Project - Laravel 11
 
-Este é um projeto de Kanban simplificado, desenvolvido para gerenciamento ágil de tarefas. A aplicação utiliza o que há de mais moderno no ecossistema PHP, focando em código limpo e desacoplamento.
+Este é um projeto de Kanban simplificado, desenvolvido para gerenciamento ágil de tarefas.
 
-## 🌟 Introdução
+## Introdução
 
 O projeto foi construído utilizando **Laravel 11** e **PHP 8.2**. A arquitetura segue o padrão **MVC (Model-View-Controller)** reforçado por uma camada de **Services**, garantindo que as regras de negócio fiquem isoladas dos Controllers.
 
@@ -22,7 +22,7 @@ O projeto foi construído utilizando **Laravel 11** e **PHP 8.2**. A arquitetura
 
 ---
 
-## 🛠 Tecnologias e Dependências
+## Tecnologias e Dependências
 
 Para garantir a portabilidade e performance, as seguintes tecnologias foram utilizadas:
 
@@ -35,7 +35,7 @@ Para garantir a portabilidade e performance, as seguintes tecnologias foram util
 
 ---
 
-## 🏗 Arquitetura do Software
+## Arquitetura do Software
 
 A estrutura de pastas foi organizada para suportar o crescimento do projeto:
 
@@ -45,7 +45,7 @@ A estrutura de pastas foi organizada para suportar o crescimento do projeto:
 
 ---
 
-## 🚀 Como Configurar e Rodar
+## Como Configurar e Rodar
 
 Você precisa ter apenas o **Docker** instalado em sua máquina.
 
@@ -121,7 +121,7 @@ O projeto estará disponível em: http://localhost
 
 ---
 
-### 🧪 Testes Automatizados
+### Testes Automatizados
 
 O projeto utiliza o PHPUnit, o framework de testes padrão do ecossistema Laravel, para garantir a integridade das regras de negócio, a estabilidade das rotas e a persistência correta dos dados.
 
